@@ -1,5 +1,12 @@
 {
   "name": "reservation_site",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "yarn": "^1.22.11"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:k-honda0420/studiopi.git",
+  "author": "k-honda0420 <k.honda0420@gmail.com>",
+  "license": "MIT"
 }
