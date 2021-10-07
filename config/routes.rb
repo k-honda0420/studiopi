@@ -20,30 +20,28 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'sessions/new'
   end
-  namespace :public do
+  
+  scope module: 'public' do
     get 'chat_rooms/index'
     get 'chat_rooms/edit'
-  end
-  namespace :public do
     get 'reservations/index'
-  end
-  namespace :public do
+    patch 'reservations/update'
+    post 'reservations/create'
     get 'customers/show'
     get 'customers/edit'
     get 'customers/destroy'
-  end
-  namespace :public do
     get 'calendars/index'
     get 'calendars/show'
+    post 'calendars/create'
+    get 'homes/about'
   end
   devise_for :admins
   devise_for :customers
-    
-    
-  namespace :public do
-    get 'homes/about'
-  end
+  
   root to: 'public/homes#top'
-
+#チャット
+  get 'chat/:id' => 'chats#show', as: 'chat'
+  resources :chats, only: [:create]
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

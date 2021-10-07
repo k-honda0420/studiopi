@@ -65,8 +65,32 @@
                         <%= link_to destroy_admin_session_path, method: :delete, class:"nav-link" do %>
                         <span class="fas fa-sign-in-alt" aria-hidden="true">admin_logout</span>
                         <% end %>
+                </li>
+            <% else %>
+                <li class="nav-item">
+                    <i ></i>
+                        <%= link_to root_path, class:"nav-link" do %>
+                        <span class="fas fa-home" aria-hidden="true">Home</span>
+                        <% end %>
+                </li>
+                <li class="nav-item">
+
+                        <%= link_to homes_about_path, class:"nav-link" do %>
+                        <span class="fas fa-link" aria-hidden="true">About</span>
+                        <% end %>
+                </li>
+                <li class="nav-item">
+                        <%= link_to new_customer_registration_path, class:"nav-link" do %>
+                        <span class="fas fa-user-plus" aria-hidden="true">sign up</span>
+                        <% end %>
 
                 </li>
+                <li class="nav-item">
+                        <%= link_to new_customer_session_path, class:"nav-link" do %>
+                        <span class="fas fa-sign-in-alt" aria-hidden="true">login</span>
+                        <% end %>
+                </li>
+
             <% end %>
             </ul>
         </div>
@@ -78,6 +102,7 @@
     <% end %>
     </header>
     <br>
+
       <%= yield %>
   </body>
 

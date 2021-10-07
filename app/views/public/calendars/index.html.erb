@@ -1,2 +1,61 @@
 <h1>Public::Calendars#index</h1>
 <p>Find me in app/views/public/calendars/index.html.erb</p>
+
+
+<div class="container">
+  <div class="row">
+    <!--
+    <div class="col-md-12">
+      <h1>Items</h1>
+      <table class="table show">
+　　　　<th>日時</th>
+        <th>予約</th>
+        <tr>
+          <td><%#= @date1 %></td>
+          <td>
+            <%#= link_to calendars_show_path do %>
+            <button type="button">予約！</button>
+            <%# end %>
+          </td>
+        </tr>
+        
+        <tr>
+          <td><%#= @date2 %></td>
+          <td>
+            <%#= link_to calendars_show_path do %>
+            <button type="button">予約！！</button>
+            <%# end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+    -->
+    
+<%= form_with model: @reservation, url: calendars_create_path, local:true  do |f| %>
+  <%= f.radio_button :reservation_date, @date1 %>
+  <%= f.label :reservation_date, Date.current.strftime('%Y/%m/%d'), {value: @date1, style: "display: inline-block;"} %>
+  <%= f.radio_button :reservation_date, @date2 %>
+  <%= f.label :reservation_date, Date.current.next_day.strftime('%Y/%m/%d'), {value: @date2, style: "display: inline-block;"} %>
+  <%= f.radio_button :reservation_date, @date3 %>
+  <%= f.label :reservation_date, @date3, {value: @date3, style: "display: inline-block;"} %>
+  <%= f.radio_button :reservation_date, @date4 %>
+  <%= f.label :reservation_date, @date4, {value: @date4, style: "display: inline-block;"} %>
+  <!--隠しパラメータ-->
+  <%= f.hidden_field :customer_id, :value => current_customer.id %>
+
+  <%= f.submit '決定' %>
+<% end %>
+
+
+            <%#= form_with model: @calendar, url: calendars_index_path do |f| %>
+            <%#= f.text_field :date %>
+            <%#= f.submit '投稿' %>
+            <%# end %>
+  </div>
+</div>
+      <%#= @days3('%Y/%m/%d') %>
+
+<!--<div id='calendar'></div>-->
+<%# ↑このコードさえあればカレンダーが現れてくれます %>
+
+<%#= javascript_pack_tag 'calendar/event' %>

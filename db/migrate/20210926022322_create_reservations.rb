@@ -3,7 +3,7 @@ class CreateReservations < ActiveRecord::Migration[5.2]
     create_table :reservations do |t|
       t.integer :customer_id
       t.integer :reservation_date
-      t.string :created_at
+      t.string :time
       t.datetime :created_at
       t.datetime :updated_at
       t.timestamps

@@ -1,2 +1,47 @@
 <h1>Public::Calendars#show</h1>
 <p>Find me in app/views/public/calendars/show.html.erb</p>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-mx-1">
+      <h1>予約確認</h1>
+        <table class="table imte">
+        <th>日付<br>
+        <th>時間</th>
+        <th></th>
+        <%# @calendar.each do |calendar| %>
+        <tr>
+          <% @reservation.each do |r| %>
+          <td><%= r.reservation_date %></td>
+          
+          
+          <%= form_with model:@reservation, url: reservations_create_path, method: :post, local:true  do |f| %>
+          <td>
+            
+            <%= f.select :time, [r.time,1,2,3,4] %>
+            <%= f.submit "何時間撮影する？", class:"btn btn-outline-success"%>
+            <%= f.hidden_field :customer_id, :value => current_customer.id %>
+            
+          </td>
+          <% end %>
+          <%# end %>
+          <td><%#= cart_item.item.price*cart_item.amount %></td>
+          <%# total_price = cart_item.item.price*cart_item.amount %> <!--計算-->
+          <td><%#= link_to "Destroy", destroy_cart_item_path(cart_item), method: :delete, class:"btn btn-danger" %></td>
+        </tr>
+        <% end %>
+        </table>
+    </div>
+  </div>
+    <div class="row">
+    <div class="col-mx-1">
+      
+      <%#= link_to "カートを空にする", cart_items_destroy_all_path(@cart_items), method: :delete, class:"btn btn-danger" %>
+      <%#= link_to "買い物を続ける", root_path, class:"btn btn-info"%>
+      
+      <%# if total_price >= 1 %>
+      <%#= link_to "注文する", orders_new_path, class:"btn btn-info"%>
+      <%# end %>
+      
+</div>

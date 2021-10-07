@@ -1,0 +1,7 @@
+I"ƒ(function() {
+  $(document).on('turbolinks:load', function() {
+    $('public/ca#calendar').fullCalendar({});
+  });
+
+}).call(this);
+:ET

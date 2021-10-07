@@ -74,5 +74,8 @@ gem 'ransack'
 # 暗号化
 gem 'dotenv-rails'
 # カレンダー
-gem 'momentjs-rails', '>= 2.9.0'
+gem 'momentjs-rails'
 gem 'fullcalendar-rails'
+gem 'jquery-rails'
+# pry-byebug
+gem 'pry-byebug'
