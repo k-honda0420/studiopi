@@ -6,37 +6,46 @@
     <%= csp_meta_tag %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
+
     </head>
 <body>
+
     <header>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <%= link_to root_path do %>
-                <span>Studuopi</span>
-                <% end %>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+            <a class="navbar-brand" href="#"><%= link_to root_path do %>Studuopi<% end %></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+                <!--button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span-->
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <% if customer_signed_in? %>
-                <li class="nav-item">
-                    <%#= link_to items_path, class:"nav-link" do %>
-                    <span aria-hidden="true">商品一覧</span>
-                    <%# end %>
+                <li class="nav-item active">
+
+                </li>
+                    <%= link_to homes_index_path, class:"nav-link" do %>
+                    <span aria-hidden="true"><i class="fas fa-camera"></i>カメラマン一覧</span>
+                    <% end %>
                 </li>
                 <li class="nav-item">
-                    <%#= link_to customers_my_page_path, class:"nav-link" do %>
+                    <%= link_to customers_show_path, class:"nav-link" do %>
                     <span aria-hidden="true">マイページ</span>
-                    <%# end %>
+                    <% end %>
                 </li>
                 <li class="nav-item">
-                    <%#= link_to cart_items_path, class:"nav-link" do %>
-                    <span aria-hidden="true">カート</span>
-                    <%# end %>
+                    <%= link_to calendars_show_path, class:"nav-link" do %>
+                    <span aria-hidden="true">予約確認</span>
+                    <% end %>
                 </li>
                 <li class="nav-item">
                     <%= link_to destroy_customer_session_path, method: :delete, class:"nav-link" do %>
@@ -44,22 +53,25 @@
                     <% end %>
                 </li>
             <% elsif admin_signed_in? %>
+                <li class="nav-item active">
+
+                </li>
                 <li class="nav-item">
                     <i ></i>
-                        <%#= link_to admin_top_path, class:"nav-link" do %>
-                        <span class="fas fa-home" aria-hidden="true">注文履歴一覧</span>
-                        <%# end %>
+                        <%= link_to admin_customer_path, class:"nav-link" do %>
+                        <span class="fas fa-home" aria-hidden="true">プロフィール変更</span>
+                        <% end %>
                 </li>
                 <li class="nav-item">
 
-                        <%#= link_to admin_customers_path, class:"nav-link" do %>
-                        <span aria-hidden="true">会員一覧画面</span>
-                        <%# end %>
+                        <%= link_to admin_homes_top_path, class:"nav-link" do %>
+                        <span aria-hidden="true">注文一覧画面</span>
+                        <% end %>
                 </li>
                 <li class="nav-item">
-                        <%= link_to admin_items_path, class:"nav-link" do %>
+                        <%#= link_to admin_items_path, class:"nav-link" do %>
                         <span aria-hidden="true">商品一覧</span>
-                        <% end %>
+                        <%# end %>
                 </li>
                 <li class="nav-item">
                         <%= link_to destroy_admin_session_path, method: :delete, class:"nav-link" do %>
@@ -67,6 +79,9 @@
                         <% end %>
                 </li>
             <% else %>
+                <li class="nav-item active">
+
+                </li>
                 <li class="nav-item">
                     <i ></i>
                         <%= link_to root_path, class:"nav-link" do %>
@@ -97,12 +112,14 @@
     </div>
 
 </nav>
+    </div>
+  </div>
+
     <% flash.each do |key, value| %>
     <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
     </header>
     <br>
-
       <%= yield %>
   </body>
 

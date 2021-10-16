@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-mx-1">
+      <h1>配送先登録</h1>
+      <%= form_with model: @reservation, url:"/calendars/#{@reservation.id}",  method: :patch do |f| %>
+      <%= f.label :撮影日時 %><br>
+      <%= f.text_field :reservation_date, autofocus: true, autocomplete: "reservation_date" %>
+      <br><br>
+      <%= f.label :撮影時間数 %><br>
+      <%= f.text_field :time, autofocus: true, autocomplete: "time" %>
+      <br><br>
+      <%= f.submit "更新", class:"btn btn-primary" %>
+      <% end %>
+      </tr>
+    </div>
+  </div>
+</div>

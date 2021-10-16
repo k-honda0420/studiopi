@@ -1,47 +1,30 @@
-<h1>Public::Calendars#show</h1>
-<p>Find me in app/views/public/calendars/show.html.erb</p>
-
 
 <div class="container">
   <div class="row">
-    <div class="col-mx-1">
+    <div class="col-mx-6">
       <h1>予約確認</h1>
         <table class="table imte">
-        <th>日付<br>
+        <th>フォトグラファー</th>
+        <th>日付</th>
         <th>時間</th>
         <th></th>
-        <%# @calendar.each do |calendar| %>
+        <th></th>
+        <th></th>
         <tr>
-          <% @reservation.each do |r| %>
-          <td><%= r.reservation_date %></td>
-          
-          
-          <%= form_with model:@reservation, url: reservations_create_path, method: :post, local:true  do |f| %>
+          <% @reservation.each do |reservation| %>
+          <td><%= reservation.admin.name %></td>
+          <td><%= reservation.reservation_date.strftime('%Y/%m/%d') %></td>
           <td>
-            
-            <%= f.select :time, [r.time,1,2,3,4] %>
-            <%= f.submit "何時間撮影する？", class:"btn btn-outline-success"%>
-            <%= f.hidden_field :customer_id, :value => current_customer.id %>
-            
+            <%= form_with model:@reservation, url: calendar_edit_path(reservation), method: :get, local:true  do |f| %>
+            <td><%= reservation.time %></td>
+            <td><%= f.submit "修正する", class:"btn btn-outline-success"%></td>
+            <td><%= link_to "キャンセル", calendar_destroy_path(reservation), method: :delete, class:"btn btn-danger" %></td>
+            <% end %>
           </td>
-          <% end %>
-          <%# end %>
-          <td><%#= cart_item.item.price*cart_item.amount %></td>
-          <%# total_price = cart_item.item.price*cart_item.amount %> <!--計算-->
-          <td><%#= link_to "Destroy", destroy_cart_item_path(cart_item), method: :delete, class:"btn btn-danger" %></td>
+          
         </tr>
         <% end %>
         </table>
     </div>
   </div>
-    <div class="row">
-    <div class="col-mx-1">
-      
-      <%#= link_to "カートを空にする", cart_items_destroy_all_path(@cart_items), method: :delete, class:"btn btn-danger" %>
-      <%#= link_to "買い物を続ける", root_path, class:"btn btn-info"%>
-      
-      <%# if total_price >= 1 %>
-      <%#= link_to "注文する", orders_new_path, class:"btn btn-info"%>
-      <%# end %>
-      
 </div>

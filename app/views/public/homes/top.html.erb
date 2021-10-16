@@ -1,15 +1,24 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+<h1>Studuopi</h1>
+
+<div class="slider">
+
+<img src="/assets/gazou2.jpg" width="480px" height="640px" alt="">
+
+</div>
 
 <%#= Date.current.strftime(‘%Y/%m/%d’) %>
 <br>
-<%= Date.current.strftime('%Y/%m/%d') %><br>
-<%= Date.current.strftime('%Y/%m/%d') %>
+<h1>本日の日付
+<%= Date.current.strftime('%Y/%m/%d') %><br></h1>
+
  <div class="row">
         <div class="my-box col-12">
           <% if customer_signed_in? %>
           <%= link_to "日付選択", calendars_index_path %>
-          
+
           <% @customer.each do |customer| %>
               <% if current_customer != customer %>
                   <%= link_to 'chatを始める', chat_path(customer.id)%>
@@ -23,3 +32,6 @@
           <% end %>
 　　</div>
 　</div>
+    </div>
+  </div>
+</div>

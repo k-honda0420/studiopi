@@ -1,5 +1,30 @@
-<h1>Public::Customers#show</h1>
-<p>Find me in app/views/public/customers/show.html.erb</p>
-<% if current_user != @customer %>
-  <%= link_to 'chatを始める', chat_path(@customer.id)%>
-<% end %>
+<div class="container">
+  <div class="row">
+    
+   <div class="col-mx-1">
+     <h1>マイページ</h1>
+        <table class="table table-show">
+          <tr>
+            <h3>名前</h3>
+            <h3><%= @customer.last_name %><%= @customer.first_name %></h3>
+            <h3>名前（カナ）</h3>
+            <h3><%= @customer.last_name_kana %><%= @customer.first_name_kana %></h3>
+          </table>
+          <br>
+          <h3>Email</h3>
+          <h3><%= @customer.email %></h3>
+          <br>
+          <h3>電話番号</h3>
+          <h3><%= @customer.telephone_number %></h3>
+          <h3>登録日時</h3>
+          <h3><%= @customer.created_at.strftime("%Y-%m-%d %H:%M") %></h3>
+          <h3>更新日時</h3>
+          <h3><%= @customer.updated_at.strftime("%Y-%m-%d %H:%M") %></h3>
+          <%= link_to "会員情報編集", edit_customer_path(@customer), class:"btn btn-success"%>
+          <%#= link_to "注文履歴一覧", orders_index_path, class:"btn btn-info"%>
+          <%= link_to "退会", customers_unsubscribe_path, class:"btn btn-info"%>
+
+          </tr>
+      </div>
+    </div>
+  </div>

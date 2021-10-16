@@ -1,5 +1,7 @@
 class Public::ReservationsController < ApplicationController
   def index
+    @reservation = current_customer.reservations
+    @calendar = current_customer.calendars
   end
   def update
   end
@@ -9,7 +11,7 @@ class Public::ReservationsController < ApplicationController
     @reservation = current_customer.reservations
     @reservation = Reservation.new(reservation_time_params)
     @reservation.save
-    redirect_to root_path
+    redirect_to reservations_index_path
   end
 
   private

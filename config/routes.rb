@@ -29,14 +29,35 @@ Rails.application.routes.draw do
     post 'reservations/create'
     get 'customers/show'
     get 'customers/edit'
-    get 'customers/destroy'
+    get 'customers/unsubscribe'
     get 'calendars/index'
     get 'calendars/show'
     post 'calendars/create'
     get 'homes/about'
+    delete 'reservations/destroy'
+    delete 'calendars/:id' => 'calendars#destroy', as: 'calendar_destroy'
+    get 'calendars/edit/:id' => 'calendars#edit', as: 'calendar_edit'
+    patch 'calendars/:id' => 'calendars#update'
+    get 'customers/edit/:id' => 'customers#edit', as: 'edit_customer'
+    get 'customers/unsubscribe'
+    patch 'customers' => 'customers#update', as: 'customer'
+    patch 'customers/withdraw'
+    get 'homes/index'
+    get 'homes/show/:id' => 'homes#show', as: 'public_customer'
   end
-  devise_for :admins
-  devise_for :customers
+  get 'admin/show' => 'admin/homes#show', as: 'admin_customer'
+  get 'admin/edit/:id' => 'admin/homes#edit', as: 'admin_customer_edit'
+  patch 'admin' => 'admin/homes#update', as: 'admin_customer_update'
+  devise_for :admins, controllers: {
+    sessions:      'admins/sessions',
+    passwords:     'admins/passwords',
+    registrations: 'admins/registrations'
+  }
+  devise_for :customers, controllers: {
+    sessions:      'customers/sessions',
+    passwords:     'customers/passwords',
+    registrations: 'customers/registrations'
+  }
   
   root to: 'public/homes#top'
 #チャット

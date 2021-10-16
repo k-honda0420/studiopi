@@ -79,3 +79,9 @@ gem 'fullcalendar-rails'
 gem 'jquery-rails'
 # pry-byebug
 gem 'pry-byebug'
+#アイコン
+
+
+gem 'bootstrap', '~> 4.5'
+gem 'jquery-rails'
+gem 'font-awesome-sass', '~> 5.13'

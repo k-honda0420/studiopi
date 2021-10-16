@@ -22,9 +22,30 @@ class Public::CalendarsController < ApplicationController
     redirect_to calendars_show_path
   end
   
+  def edit
+    @reservation = Reservation.find(params[:id])
+
+  end
+  
+  def update
+    @reservation = Reservation.find(params[:id])
+    @reservation.update(reservation_time_params)
+    flash[:notice]="更新されました."
+    redirect_to calendars_show_path
+  end
+  
+  def destroy
+
+		@reservation = Reservation.find(params[:id])
+		@reservation.destroy
+		redirect_to calendars_show_path
+  end
+  
+  
   private
 	def reservation_time_params
-		params.require(:reservation).permit(:customer_id, :reservation_date)
+	  #修正が必要:admin_id
+		params.require(:reservation).permit(:admin_id, :customer_id, :reservation_date, :time)
 	end  
 
  

@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+<div class="col-mx-1">
+<h1>カメラマン一覧</h1>
+      <table class="table user-show">
+		<th></th>
+		<th>名前</th>
+		<th>メール</th>
+		<th>自己紹介</th>
+		<th></th>
+         <% @admin.each do |admin| %>
+            <tr>
+				
+				<td><%= link_to public_customer_path(admin) do %>
+				<%= attachment_image_tag admin, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %>
+				<% end %>
+				</td>
+				<td>
+				<%= link_to public_customer_path(admin) do %>	
+				<%= admin.name %></td>
+				<% end %>
+					
+				<td><%= admin.email %></td>
+				<td><%= admin.introduction %></td>
+			<% end %>
+          </tr>
+        </table>
+</div>
+</div>
+</div>
+

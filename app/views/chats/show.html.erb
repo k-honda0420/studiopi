@@ -1,7 +1,14 @@
+
+<div class="container">
+  <div class="row">
+   <div class="col-md-6">
+       <% if customer_signed_in? %>
 <%= form_with model: @chat do |f| %>
     <%= f.text_field :message %>
     <%= f.hidden_field :room_id %>
-    <%= f.submit %>
+    <!--隠しパラメータ-->
+    <%= f.hidden_field :admin_id, :value => @customer.id %>
+    <%= f.submit :投稿 %>
 <% end %>
 <table>
     <thead>
@@ -11,11 +18,63 @@
         </tr>
     </thead>
     <tbody>
+        
         <% @chats.each do |chat| %>
+        <% if current_customer.id == chat.customer_id %>
+        <% if @customer.id == chat.admin_id %>
             <tr>
-                <td><%= chat.customer.email %></td>
+                <td><%= chat.customer.last_name %><%= chat.customer.first_name %></td>
                 <td><%= chat.message %></td>
             </tr>
         <% end %>
+        <% end %>
+        <% end %>
+        
+        
+        
+        <% else %>
+
+
+<%= form_with model: @chat do |f| %>
+    
+<p>宛先番号</p>
+<%= f.text_field :customer_id %>
+<br><br>
+<p>メッセージ</p>
+<%= f.text_field :message %>
+    <%= f.hidden_field :room_id %>
+
+    <!--隠しパラメータ-->
+    <%= f.hidden_field :admin_id, :value => @customer.id %>
+    <%= f.submit :投稿 %>
+<% end %>
+<table>
+    <thead>
+        <tr>
+            <td>投稿者名</td>
+            <td>投稿内容</td>
+            <td>宛先番号</td>
+        </tr>
+    </thead>
+    <tbody>
+        
+        <% @chats.each do |chat| %>
+        <% if current_admin.id == chat.admin_id %>
+        <%# if @customer.id == chat.admin_id %>
+            <tr>
+                <td><%= chat.customer.last_name %><%= chat.customer.first_name %></td>
+                <td><%= chat.message %></td>
+                <td>
+                    <%= chat.customer.id %>
+                </td>
+                
+            </tr>
+        <%# end %>
+        <% end %>
+        <% end %>
+        <% end %>
     </tbody>
 </table>
+</div>
+</div>
+</div>

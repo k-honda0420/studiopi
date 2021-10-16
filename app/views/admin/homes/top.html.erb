@@ -1,2 +1,30 @@
-<h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-mx-6">
+      <h1>予約確認</h1>
+        <table class="table imte">
+        <th>注文番号</th>
+        <th>日付</th>
+        <th>時間</th>
+        <th></th>
+        <th></th>
+        <tr>
+          <% @reservation.each do |reservation| %>
+          <% if reservation.admin_id == current_admin.id %>
+          <td><%= reservation.id %></td>
+          <td><%= reservation.reservation_date.strftime('%Y/%m/%d') %></td>
+          <td>
+            <%= form_with model:@reservation, url: calendar_edit_path(reservation), method: :get, local:true  do |f| %>
+            <td><%= reservation.time %></td>
+            <td><%= f.submit "修正する", class:"btn btn-outline-success"%></td>
+          <% end %>
+          <% end %>
+          </td>
+          
+        </tr>
+        <% end %>
+        </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+
+<div class="container">
+  <div class="row">
+
+   <div class="col-md-3">
+     <h1>admin info</h1>
+
+<div class="profile-container">
+  <%= attachment_image_tag @admin, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %>
+  <hr>
+
+  <th><h3>名前</h3></th>
+  <th><h3><%= @admin.name %></h3></th>
+
+  <hr>
+ <h3>introduction</h3>
+  <h3><%= @admin.introduction %></h3>
+
+  <!--予約じかん-->
+    <h1>予約日時</h1>
+    <div class="col-md-12">
+<%= form_with model: @reservation, url: calendars_create_path, local:true  do |f| %>
+  <%= f.radio_button :reservation_date, @date1 %>
+  <%= f.label :reservation_date, Date.current.strftime('%Y/%m/%d'), {value: @date1, style: "display: inline-block;"} %>
+  <br>
+  <%= f.radio_button :reservation_date, @date2 %>
+  <%= f.label :reservation_date, Date.current.next_day.strftime('%Y/%m/%d'), {value: @date2, style: "display: inline-block;"} %>
+  <br>
+  <%= f.radio_button :reservation_date, @date3 %>
+  <%= f.label :reservation_date, @date3.strftime('%Y/%m/%d'), {value: @date3, style: "display: inline-block;"} %>
+  <br>
+  <%= f.radio_button :reservation_date, @date4 %>
+  <%= f.label :reservation_date, @date4.strftime('%Y/%m/%d'), {value: @date4, style: "display: inline-block;"} %>
+  <br>
+  <br>
+  </div>
+  撮影時間
+  <%= f.select :time, [1,2,3,4] %>
+  <!--隠しパラメータ-->
+  <%= f.hidden_field :customer_id, :value => current_customer.id %>
+  	  <!--#修正が必要:admin_id-->
+  <%= f.hidden_field :admin_id, :value => @admin.id %>
+  <%= f.submit '決定' %>
+<% end %>
+<br>
+<%= link_to chat_path(@admin) do %>
+<h3>メッセージはこちら</h3>
+<% end %>
+
+</div>
+   </div>
+
+
+    </div>
+  </div>

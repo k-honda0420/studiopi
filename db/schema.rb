@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_07_114439) do
+ActiveRecord::Schema.define(version: 2021_10_16_015622) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2021_10_07_114439) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "profile_image_id"
+    t.string "introduction"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
@@ -41,7 +43,7 @@ ActiveRecord::Schema.define(version: 2021_10_07_114439) do
   end
 
   create_table "chats", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "admin_id"
     t.integer "room_id"
     t.string "message"
     t.datetime "created_at", null: false
@@ -78,10 +80,11 @@ ActiveRecord::Schema.define(version: 2021_10_07_114439) do
 
   create_table "reservations", force: :cascade do |t|
     t.integer "customer_id"
-    t.integer "reservation_date"
+    t.datetime "reservation_date"
     t.string "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "admin_id"
   end
 
   create_table "rooms", force: :cascade do |t|

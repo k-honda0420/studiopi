@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+   <div class="col-lx-1">
+     <h1>admin info</h1>
+
+
+
+      <%= form_with model:@admin, url:admin_customer_update_path, local:true do |f| %>
+      <br>
+      <label for="inputImage">ProfileImage</label>
+      <br>
+      <%= attachment_image_tag @admin, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+      <br>
+      <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+      
+     <h3><%= f.label :名前 %></h3>
+     <%= f.text_field :name, placeholder:"名前" %>
+     <br><br>
+
+     <h3><%= f.label :メールアドレス %></h3>
+     <%= f.text_field :email, placeholder:"email" %>
+     <br><br>
+
+     <h3><%= f.label :自己紹介 %></h3>
+     <%= f.text_field :introduction, placeholder:"自己紹介文" %>
+     <br><br>
+
+
+
+
+  <br><br>
+  <%= f.submit "Update" %>
+<% end %>
+</div>
+</div>
+</div>

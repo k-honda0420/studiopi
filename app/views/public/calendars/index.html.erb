@@ -1,5 +1,3 @@
-<h1>Public::Calendars#index</h1>
-<p>Find me in app/views/public/calendars/index.html.erb</p>
 
 
 <div class="container">
@@ -18,7 +16,7 @@
             <%# end %>
           </td>
         </tr>
-        
+
         <tr>
           <td><%#= @date2 %></td>
           <td>
@@ -30,16 +28,25 @@
       </table>
     </div>
     -->
-    
+    <h1>予約日時</h1>
+    <div class="col-md-12">
 <%= form_with model: @reservation, url: calendars_create_path, local:true  do |f| %>
   <%= f.radio_button :reservation_date, @date1 %>
   <%= f.label :reservation_date, Date.current.strftime('%Y/%m/%d'), {value: @date1, style: "display: inline-block;"} %>
+  <br>
   <%= f.radio_button :reservation_date, @date2 %>
   <%= f.label :reservation_date, Date.current.next_day.strftime('%Y/%m/%d'), {value: @date2, style: "display: inline-block;"} %>
+  <br>
   <%= f.radio_button :reservation_date, @date3 %>
-  <%= f.label :reservation_date, @date3, {value: @date3, style: "display: inline-block;"} %>
+  <%= f.label :reservation_date, @date3.strftime('%Y/%m/%d'), {value: @date3, style: "display: inline-block;"} %>
+  <br>
   <%= f.radio_button :reservation_date, @date4 %>
-  <%= f.label :reservation_date, @date4, {value: @date4, style: "display: inline-block;"} %>
+  <%= f.label :reservation_date, @date4.strftime('%Y/%m/%d'), {value: @date4, style: "display: inline-block;"} %>
+  <br>
+  <br>
+  </div>
+  撮影時間
+  <%= f.select :time, [1,2,3,4] %>
   <!--隠しパラメータ-->
   <%= f.hidden_field :customer_id, :value => current_customer.id %>
 
