@@ -46,10 +46,12 @@ class ChatsController < ApplicationController
     def create
       if customer_signed_in?
         @chat = current_customer.chats.new(chat_params)
+#        binding.pry
         @chat.save
         redirect_to request.referer
       else
         @chat = current_admin.chats.new(chat_params)
+#        binding.pry
         @chat.save
         redirect_to request.referer
       end
@@ -57,6 +59,10 @@ class ChatsController < ApplicationController
 
     private
     def chat_params
-      params.require(:chat).permit(:message, :room_id, :admin_id)
+      if customer_signed_in?
+        params.require(:chat).permit(:message, :room_id, :admin_id)
+      else
+        params.require(:chat).permit(:message, :room_id, :admin_id, :customer_id)
+      end
     end
 end
