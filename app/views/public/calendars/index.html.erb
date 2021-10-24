@@ -1,33 +1,6 @@
-
-
 <div class="container">
   <div class="row">
-    <!--
-    <div class="col-md-12">
-      <h1>Items</h1>
-      <table class="table show">
-　　　　<th>日時</th>
-        <th>予約</th>
-        <tr>
-          <td><%#= @date1 %></td>
-          <td>
-            <%#= link_to calendars_show_path do %>
-            <button type="button">予約！</button>
-            <%# end %>
-          </td>
-        </tr>
 
-        <tr>
-          <td><%#= @date2 %></td>
-          <td>
-            <%#= link_to calendars_show_path do %>
-            <button type="button">予約！！</button>
-            <%# end %>
-          </td>
-        </tr>
-      </table>
-    </div>
-    -->
     <h1>予約日時</h1>
     <div class="col-md-12">
 <%= form_with model: @reservation, url: calendars_create_path, local:true  do |f| %>
@@ -44,25 +17,13 @@
   <%= f.label :reservation_date, @date4.strftime('%Y/%m/%d'), {value: @date4, style: "display: inline-block;"} %>
   <br>
   <br>
-  </div>
+
   撮影時間
   <%= f.select :time, [1,2,3,4] %>
-  <!--隠しパラメータ-->
   <%= f.hidden_field :customer_id, :value => current_customer.id %>
 
   <%= f.submit '決定' %>
 <% end %>
-
-
-            <%#= form_with model: @calendar, url: calendars_index_path do |f| %>
-            <%#= f.text_field :date %>
-            <%#= f.submit '投稿' %>
-            <%# end %>
+   </div>
   </div>
 </div>
-      <%#= @days3('%Y/%m/%d') %>
-
-<!--<div id='calendar'></div>-->
-<%# ↑このコードさえあればカレンダーが現れてくれます %>
-
-<%#= javascript_pack_tag 'calendar/event' %>
